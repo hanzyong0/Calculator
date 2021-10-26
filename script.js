@@ -1,3 +1,4 @@
+// Math operators
 const add = function (a, b) {
     return a + b;
 };
@@ -25,3 +26,20 @@ const operate = function (a, operator, b) {
         return divide(a, b);
     };
 };
+
+// Update display when buttons clicked
+const display = document.querySelector('#display');
+
+const cells = document.querySelectorAll('.cell');
+cells.forEach((cell) => {
+    cell.addEventListener('click', (e) => {
+        let a;
+        if (e.target.value !== NaN) {
+            a = e.target.value;
+        } else {
+            a = parseInt(e.target.value, 10);
+        };
+        display.textContent += a + ' ';
+    });
+});
+
