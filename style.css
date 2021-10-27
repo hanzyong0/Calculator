@@ -16,27 +16,34 @@ body {
 }
 
 #container {
-    width: 500px;
+    width: 400px;
     height: 500px;
+    border-radius: 10px;
     border: 5px solid black;
     display: flex;
     flex-direction: column;
+    gap: 2px;
+    padding: 2px;
+    font-size: xx-large;
 }
 
 .row {
     display: flex;
     flex: 1;
+    gap: 2px;
 }
 
 .cell,
-#clear {
+#clear,
+#backspace {
     flex: 1;
+    border-radius: 1px;
+    font-size: large;
 }
 
-#display {
+.row-display {
     display: flex;
-    flex: 2;
+    flex: 1;
     justify-content: center;
     align-items: center;
-    padding: 3px;
 }
