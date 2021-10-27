@@ -1,3 +1,7 @@
+let x;
+let y;
+let operator;
+
 // Operate function
 const operate = function (x, y, operator) {
     if (operator === '+') {
