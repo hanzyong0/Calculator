@@ -1,6 +1,6 @@
-let x;
-let y;
-let operator;
+let x = null;
+let y = null;
+let operator = null;
 
 // Operate function
 const operate = function (x, y, operator) {
@@ -44,6 +44,25 @@ clear.addEventListener('click', () => {
 // "=" key operate
 const equals = document.querySelector('#operate');
 equals.addEventListener('click', () => {
-    answer = operate(x, y, operator);
-    display.textContent = answer;
+    if (operator !== null) {
+        answer = operate(x, y, operator);
+        display.textContent = answer;
+    } else {
+        display.textContent = '0';
+    }
 });
+
+// Operator buttons functions
+const operatorButtons = document.querySelectorAll('.operator');
+operatorButtons.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+        if (operator === null) {
+            operator = e.target.value;
+        } else {
+            answer = operate(x, y, operator);
+            display.textContent = answer;
+            operator = e.target.value;
+        };
+    });
+});
+
