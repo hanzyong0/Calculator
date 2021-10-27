@@ -28,7 +28,8 @@ body {
     flex: 1;
 }
 
-.cell {
+.cell,
+#clear {
     flex: 1;
 }
 

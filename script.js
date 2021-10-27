@@ -33,13 +33,19 @@ const display = document.querySelector('#display');
 const cells = document.querySelectorAll('.cell');
 cells.forEach((cell) => {
     cell.addEventListener('click', (e) => {
-        let a;
-        if (e.target.value !== NaN) {
+        if (isNaN(e.target.value)) {
             a = e.target.value;
         } else {
             a = parseInt(e.target.value, 10);
         };
         display.textContent += a + ' ';
     });
+});
+
+// Clear button
+const clear = document.querySelector('#clear');
+
+clear.addEventListener('click', () => {
+    location.reload();
 });
 
