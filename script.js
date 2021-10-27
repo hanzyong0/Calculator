@@ -1,29 +1,33 @@
 // Math operators
-const add = function (a, b) {
-    return a + b;
+const add = function (x, y) {
+    return x + y;
 };
 
-const subtract = function (a, b) {
-    return a - b;
+const subtract = function (x, y) {
+    return x - y;
 };
 
-const multiply = function (a, b) {
-    return a * b;
+const multiply = function (x, y) {
+    return x * y;
 };
 
-const divide = function (a, b) {
-    return a / b;
+const divide = function (x, y) {
+    if (y === 0) {
+        return error;
+    } else {
+        return x / y;
+    };
 };
 
-const operate = function (a, operator, b) {
-    if (operator == '+') {
-        return add(a, b);
-    } else if (operator == '-') {
-        return subtract(a, b);
-    } else if (operator == '*') {
-        return multiply(a, b);
-    } else if (operator == '/') {
-        return divide(a, b);
+const operate = function (x, y, operator) {
+    if (operator === '+') {
+        return add(x, y);
+    } else if (operator === '-') {
+        return subtract(x, y);
+    } else if (operator === '*') {
+        return multiply(x, y);
+    } else if (operator === '/') {
+        return divide(x, y);
     };
 };
 
