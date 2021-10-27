@@ -1,33 +1,17 @@
-// Math operators
-const add = function (x, y) {
-    return x + y;
-};
-
-const subtract = function (x, y) {
-    return x - y;
-};
-
-const multiply = function (x, y) {
-    return x * y;
-};
-
-const divide = function (x, y) {
-    if (y === 0) {
-        return error;
-    } else {
-        return x / y;
-    };
-};
-
+// Operate function
 const operate = function (x, y, operator) {
     if (operator === '+') {
-        return add(x, y);
+        return x + y;
     } else if (operator === '-') {
-        return subtract(x, y);
+        return x - y;
     } else if (operator === '*') {
-        return multiply(x, y);
+        return x * y;
     } else if (operator === '/') {
-        return divide(x, y);
+        if (y === 0) {
+            return 'error';
+        } else {
+            return x / y;
+        };
     };
 };
 
@@ -53,3 +37,9 @@ clear.addEventListener('click', () => {
     location.reload();
 });
 
+// "=" key operate
+const equals = document.querySelector('#operate');
+equals.addEventListener('click', () => {
+    answer = operate(x, y, operator);
+    display.textContent = answer;
+});
