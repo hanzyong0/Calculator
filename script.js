@@ -1,51 +1,49 @@
+const operatorButtons = document.querySelectorAll('.operator');
+const numberButtons = document.querySelectorAll('.number');
+const display = document.querySelector('#display');
+const clear = document.querySelector('#clear');
+const equals = document.querySelector('#operate');
+const dotButton = document.querySelector('#dot');
+const backspace = document.querySelector('#backspace');
+
 let x = null;
 let y = null;
 let operator = null;
+dotButton.disabled = false;
 
 // Operate function
 const operate = function (x, y, operator) {
-    x = parseInt(x, 10);
-    y = parseInt(y, 10);
+    x = parseFloat(x, 10);
+    y = parseFloat(y, 10);
     if (operator === '+') {
-        return x + y;
+        return Math.round((x + y) * 100) / 100;
     } else if (operator === '-') {
-        return x - y;
+        return Math.round((x - y) * 100) / 100;
     } else if (operator === '*') {
-        return x * y;
+        return Math.round((x * y) * 100) / 100;
     } else if (operator === '/') {
         if (y === 0) {
             return 'error';
         } else {
-            return x / y;
+            return Math.round((x / y) * 100) / 100;
         };
     };
 };
 
 // Update display when buttons clicked
-const display = document.querySelector('#display');
-
-const cells = document.querySelectorAll('.cell');
-cells.forEach((cell) => {
-    cell.addEventListener('click', (e) => {
-        if (isNaN(e.target.value)) {
-            a = ' ' + e.target.value + ' ';
-        } else {
-            a = e.target.value;
-        };
+numberButtons.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+        a = e.target.value;
         display.textContent += a;
     });
 });
 
 // Clear button
-const clear = document.querySelector('#clear');
-
 clear.addEventListener('click', () => {
     location.reload();
 });
 
 // "=" key operate
-const equals = document.querySelector('#operate');
-
 equals.addEventListener('click', () => {
     if (x !== null && y !== null && operator !== null) {
         answer = operate(x, y, operator);
@@ -56,15 +54,17 @@ equals.addEventListener('click', () => {
     x = null;
     y = null;
     operator = null;
+    dotButton.disabled = false;
 });
 
 // Operator buttons functions
-const operatorButtons = document.querySelectorAll('.operator');
-
 operatorButtons.forEach((btn) => {
     btn.addEventListener('click', (e) => {
         if (operator === null) {
             operator = e.target.value;
+            display.textContent += ' ' + operator + ' ';
+        } else if (x === null && y === null && operator !== null) {
+            display.textContent = '0';
         } else if (operator !== null) {
             answer = operate(x, y, operator);
             display.textContent = answer;
@@ -76,9 +76,6 @@ operatorButtons.forEach((btn) => {
     });
 });
 
-// Number buttons functions
-const numberButtons = document.querySelectorAll('.number');
-
 // Function for x
 numberButtons.forEach((btn) => {
     btn.addEventListener('click', (e) => {
@@ -86,6 +83,9 @@ numberButtons.forEach((btn) => {
             x = e.target.value;
         } else if (x !== null && y === null && operator === null) {
             x += e.target.value;
+        };
+        if (x.includes('.')) {
+            dotButton.disabled = true;
         };
     });
 });
@@ -98,5 +98,31 @@ numberButtons.forEach((btn) => {
         } else if (x !== null && y !== null && operator !== null) {
             y += e.target.value;
         };
+        if (x.includes('.') && y.includes('.')) {
+            dotButton.disabled = true;
+        } else if (x.includes('.') && !y.includes('.')) {
+            dotButton.disabled = false;
+        };
     });
+});
+
+// Backspace button function
+backspace.addEventListener('click', () => {
+    if (x !== null && y === null && operator === null) {
+        x = x.slice(0, x.length - 1);
+        if (x.length === 0) {
+            x = null;
+        };
+        display.textContent = display.textContent.slice(0, display.textContent.length - 1);
+    } else if (x !== null && y === null && operator !== null) {
+        operator = operator.slice(0, operator.length - 3);
+        operator = null;
+        display.textContent = display.textContent.slice(0, display.textContent.length - 3);
+    } else if (x !== null && y !== null && operator !== null) {
+        y = y.slice(0, y.length - 1);
+        if (y.length === 0) {
+            y = null;
+        };
+        display.textContent = display.textContent.slice(0, display.textContent.length - 1);
+    };
 });
