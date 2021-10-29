@@ -86,6 +86,8 @@ numberButtons.forEach((btn) => {
         };
         if (x.includes('.')) {
             dotButton.disabled = true;
+        } else if (!x.includes('.')) {
+            dotButton.disabled = false;
         };
     });
 });
@@ -98,9 +100,9 @@ numberButtons.forEach((btn) => {
         } else if (x !== null && y !== null && operator !== null) {
             y += e.target.value;
         };
-        if (x.includes('.') && y.includes('.')) {
+        if (y.includes('.')) {
             dotButton.disabled = true;
-        } else if (x.includes('.') && !y.includes('.')) {
+        } else if (!y.includes('.')) {
             dotButton.disabled = false;
         };
     });
@@ -125,4 +127,10 @@ backspace.addEventListener('click', () => {
         };
         display.textContent = display.textContent.slice(0, display.textContent.length - 1);
     };
+    if (!x.includes('.')) {
+        dotButton.disabled = false;
+    } else if (!y.includes('.')) {
+        dotButton.disabled = false;
+    };
 });
+
