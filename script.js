@@ -137,3 +137,8 @@ backspace.addEventListener('click', () => {
     };
 });
 
+// Keyboard support by simulating click event
+window.addEventListener('keydown', (e) => {
+    const key = document.querySelector(`button[data-key='${e.key}']`);
+    key.click();
+});
