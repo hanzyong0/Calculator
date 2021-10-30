@@ -60,11 +60,14 @@ equals.addEventListener('click', () => {
 // Operator buttons functions
 operatorButtons.forEach((btn) => {
     btn.addEventListener('click', (e) => {
-        if (operator === null) {
+        if (x === null && (e.target.value === '-' || e.target.value === '+')) {
+            x = e.target.value;
+            display.textContent = x;
+        } else if ((x === '-' || x === '+') && y === null && operator === null) {
+            display.textContent = e.target.value;
+        } else if (x !== null && y === null && operator === null) {
             operator = e.target.value;
             display.textContent += ' ' + operator + ' ';
-        } else if (x === null && y === null && operator !== null) {
-            display.textContent = '0';
         } else if (operator !== null) {
             answer = operate(x, y, operator);
             display.textContent = answer;
