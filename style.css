@@ -13,6 +13,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background: azure;
 }
 
 #container {
@@ -22,28 +23,43 @@ body {
     border: 5px solid black;
     display: flex;
     flex-direction: column;
-    gap: 2px;
-    padding: 2px;
     font-size: xx-large;
+    background-color: white;
+    box-shadow: 0 0 3em #cdcdcd;
 }
 
 .row {
     display: flex;
     flex: 1;
-    gap: 2px;
 }
 
 .cell,
 #clear,
 #backspace {
     flex: 1;
-    border-radius: 1px;
     font-size: large;
+    background-color: transparent;    
 }
 
 .row-display {
     display: flex;
-    flex: 1;
+    flex: none;
+    height: 100px;
     justify-content: center;
     align-items: center;
+    background-color: rgba(223, 217, 217, 0.911);
+    color: black;
+    border-bottom: 2px solid black;
+    font-size: 1.5em;
 }
+
+button:hover,
+#clear:hover,
+#backspace:hover {
+    background: #cdcdcd;
+}
+
+button:active {
+    box-shadow: 0 0 20px #cdcdcd;
+}
+
