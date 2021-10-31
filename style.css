@@ -24,21 +24,41 @@ body {
     display: flex;
     flex-direction: column;
     font-size: xx-large;
-    background-color: white;
+    background-color: black;
     box-shadow: 0 0 3em #cdcdcd;
+    padding: 5px;
+    gap: 2px;
 }
 
 .row {
     display: flex;
     flex: 1;
+    gap: 2px;
 }
 
 .cell,
 #clear,
 #backspace {
     flex: 1;
-    font-size: large;
-    background-color: transparent;    
+    font-size: 0.6em;
+    border-radius: 5%;
+    border: none;
+    margin: 1px;
+    font-weight: 600;
+}
+
+.number,
+#operate {
+    background-color: #217C7E;
+}
+
+#clear,
+#backspace {
+    background-color: dodgerblue;
+}
+
+.operator {
+    background-color: #FF8F1F;
 }
 
 .row-display {
@@ -47,16 +67,17 @@ body {
     height: 100px;
     justify-content: center;
     align-items: center;
-    background-color: rgba(223, 217, 217, 0.911);
+    background-color: #b2b9b7;
     color: black;
-    border-bottom: 2px solid black;
     font-size: 1.5em;
+    margin-bottom: 5px;
 }
 
 button:hover,
 #clear:hover,
-#backspace:hover {
-    background: #cdcdcd;
+#backspace:hover,
+#operate:hover {
+    background: white;
 }
 
 button:active {
