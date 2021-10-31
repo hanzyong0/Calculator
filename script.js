@@ -33,8 +33,11 @@ const operate = function (x, y, operator) {
 // Update display when buttons clicked
 numberButtons.forEach((btn) => {
     btn.addEventListener('click', (e) => {
-        a = e.target.value;
-        display.textContent += a;
+        if (x === null && y === null && operator === null) {
+            display.textContent = e.target.value;
+        } else {
+            display.textContent += e.target.value;
+        };
     });
 });
 
@@ -48,6 +51,8 @@ equals.addEventListener('click', () => {
     if (x !== null && y !== null && operator !== null) {
         answer = operate(x, y, operator);
         display.textContent = answer;
+    } else if (x !== null && y === null && operator === null) {
+        display.textContent = x;
     } else {
         display.textContent = '0';
     };
@@ -65,17 +70,21 @@ operatorButtons.forEach((btn) => {
             display.textContent = x;
         } else if ((x === '-' || x === '+') && y === null && operator === null) {
             display.textContent = e.target.value;
+        } else if (x === null && y === null && operator === null) {
+            display.textContent = e.target.value;
         } else if (x !== null && y === null && operator === null) {
             operator = e.target.value;
             display.textContent += ' ' + operator + ' ';
-        } else if (operator !== null) {
+        } else if (x !== null && y !== null && operator !== null) {
             answer = operate(x, y, operator);
             display.textContent = answer;
             operator = e.target.value;
             display.textContent += ' ' + operator + ' ';
             x = answer;
             y = null;
-        };
+        } else {
+            display.textContent = '0';
+        }
     });
 });
 
@@ -138,7 +147,7 @@ backspace.addEventListener('click', () => {
 });
 
 // Keyboard support by simulating click event
-window.addEventListener('keydown', (e) => {
+document.addEventListener('keydown', (e) => {
     const key = document.querySelector(`button[data-key='${e.key}']`);
     key.click();
 });
